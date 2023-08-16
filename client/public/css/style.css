@@ -169,11 +169,11 @@ input[type=radio] {
   -o-appearance: radio !important;
   -ms-appearance: radio !important; }
 
-img {
+.main img {
   max-width: 100%;
   height: auto; }
 
-figure {
+.main figure {
   margin: 0; }
 
 p {

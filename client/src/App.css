@@ -1,3 +1,116 @@
  
 
- 
+ .contact-container {
+  margin: 5em 0;
+}
+
+.contact-content {
+  margin: 0 auto;
+  width: 85%;
+}
+
+.cont-head h1{
+  font-size: 100px !important;
+}
+
+.cont-para {
+  margin: 20px 0 0;
+  width: 75%;
+}
+
+.cont-para p{
+  font-size: 30px !important;
+}
+
+.contact-form {
+  margin: 6em 0 0;
+}
+
+
+.contact-form input {
+  background-color: #f5f8fa;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 10px 0 30px;
+  padding: 12px 20px;
+  width: 100%;
+
+}
+
+.first-last-div {
+  display: flex;
+}
+
+.first, .last {
+  width: 100%;
+}
+
+.first input {
+  width: 90%;
+}
+
+input#Moredetails {
+  height: 12em;
+}
+
+.contact-form input[type=submit] {
+  background-color: #fece0f;
+  border: 2px solid #fece0f;
+  border-radius: 4px;
+  color: #000;
+  cursor: pointer;
+  letter-spacing: .4px;
+  margin: 8px 0;
+  padding: 14px 45px;
+  transition: all .4s;
+  width: auto;
+}
+
+.contact-form label {
+  position: unset !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.Home-Main-container{
+  display: flex;
+   align-items: center;
+  justify-content: center;
+  height: 80%;
+}
+.Main-container {
+  text-align: center;
+}
+.Home-Main-container h1 {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+.Home-Main-container p {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0px 0 15px;
+}
+.Home-Main-container .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(30, 143, 255, 0.687);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.Home-Main-container .button:hover {
+  background-color: #0081ff;
+}
+
+
+
+
+
+
+
+
