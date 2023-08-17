@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
- 
-const Register = () => {
+import {  useParams } from 'react-router-dom'
 
+const Register = () => {
+const history = useParams();
     const [user, setUser] = useState({
         name: "",
         email: "",
@@ -14,6 +15,30 @@ const Register = () => {
     const handleInput = (e) => {
         const { name, value } = e.target; // Destructure event object correctly
         setUser(prevUser => ({ ...prevUser, [name]: value })); // Use functional update for state
+    }
+
+    const postData = async (e) =>{
+      e.preventDefault(); 
+      const { name, work, email, password, cpassword, number } = user;
+      const res = await fetch("/register",{
+        method: "post",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body:JSON.stringify({
+            name, work, email, password, cpassword, number
+        })
+      }) 
+
+       const response = await res.json()
+         if(response.status === 422 || !response){
+          window.alert("Invalid registration")
+          console.log("Invalid Registration");
+         }else{
+            window.alert("Successful registration")
+          console.log("Successful Registration");
+          history.push("/register")
+         }
     }
 
   return (
@@ -54,7 +79,7 @@ const Register = () => {
                                 <label  className="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
                             </div>
                             <div className="form-group form-button">
-                                <input type="submit" name="signup" id="signup" className="form-submit" value="Register"/>
+                                <input type="submit" name="signup" id="signup" className="form-submit" value="Register" onClick={postData}/>
                             </div>
                         </form>
                     </div>
