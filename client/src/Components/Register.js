@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import {  useParams } from 'react-router-dom'
-
+ 
 const Register = () => {
-const history = useParams();
-    const [user, setUser] = useState({
+     const [user, setUser] = useState({
         name: "",
         email: "",
         work: "",
@@ -21,7 +19,7 @@ const history = useParams();
       e.preventDefault(); 
       const { name, work, email, password, cpassword, number } = user;
       const res = await fetch("/register",{
-        method: "post",
+        method: "POST",
         headers: {
             "Content-type": "application/json"
         },
@@ -37,8 +35,7 @@ const history = useParams();
          }else{
             window.alert("Successful registration")
           console.log("Successful Registration");
-          history.push("/register")
-         }
+          }
     }
 
   return (
@@ -49,7 +46,7 @@ const history = useParams();
                 <div className="signup-content">
                     <div className="signup-form">
                         <h2 className="form-title">Sign up</h2>
-                        <form method="post" className="register-form" id="register-form">
+                        <form method="POST" className="register-form" id="register-form">
                             <div className="form-group">
                                 <label ><i className="zmdi zmdi-account material-icons-name"></i></label>
                                 <input value={user.name} onChange={handleInput} type="text" name="name" id="name" placeholder="Your Name"/>
@@ -67,17 +64,28 @@ const history = useParams();
                                 <input value={user.work} onChange={handleInput} type="text" name="work" id="work" placeholder="Your Work"/>
                             </div>
                             <div className="form-group">
-                                <label ><i className="zmdi zmdi-lock"></i></label>
-                                <input value={user.password} onChange={handleInput} type="password" name="pass" id="pass" placeholder="Password"/>
-                            </div>
-                            <div className="form-group">
-                                <label ><i className="zmdi zmdi-lock-outline"></i></label>
-                                <input value={user.cpassword} onChange={handleInput} type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
-                            </div>
-                            <div className="form-group">
-                                <input type="checkbox" name="agree-term" id="agree-term" className="agree-term" />
-                                <label  className="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" className="term-service">Terms of service</a></label>
-                            </div>
+    <label ><i className="zmdi zmdi-lock"></i></label>
+    <input
+        value={user.password}
+        onChange={handleInput}
+        type="password"
+        name="password"  
+        id="pass"
+        placeholder="Password"
+    />
+</div>
+<div className="form-group">
+    <label ><i className="zmdi zmdi-lock-outline"></i></label>
+    <input
+        value={user.cpassword}
+        onChange={handleInput}
+        type="password"
+        name="cpassword"  
+        id="re_pass"
+        placeholder="Repeat your password"
+    />
+</div>
+                           
                             <div className="form-group form-button">
                                 <input type="submit" name="signup" id="signup" className="form-submit" value="Register" onClick={postData}/>
                             </div>
