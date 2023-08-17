@@ -1,17 +1,17 @@
-import React from 'react'
+import img from '../logo.png'
 import { Link } from 'react-router-dom'
-
+ 
 const Navbar = () => {
   return (
      <>
      <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <Link class="navbar-brand" to="/"> <img src={img}/> </Link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <Link class="nav-link" to="/home">Home</Link>
       </li>
       <li class="nav-item">

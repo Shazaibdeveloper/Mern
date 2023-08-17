@@ -9,7 +9,7 @@ const Signup = () => {
                 <div className="signup-content">
                     <div className="signup-form">
                         <h2 className="form-title">Sign up</h2>
-                        <form method="POST" className="register-form" id="register-form">
+                        <form method="post" className="register-form" id="register-form">
                             <div className="form-group">
                                 <label ><i className="zmdi zmdi-account material-icons-name"></i></label>
                                 <input type="text" name="name" id="name" placeholder="Your Name"/>
@@ -17,6 +17,14 @@ const Signup = () => {
                             <div className="form-group">
                                 <label ><i className="zmdi zmdi-email"></i></label>
                                 <input type="email" name="email" id="email" placeholder="Your Email"/>
+                            </div>
+                            <div className="form-group">
+                                <label ><i className="zmdi zmdi-phone"></i></label>
+                                <input type="number" name="number" id="number" placeholder="Your Phone number"/>
+                            </div>
+                            <div className="form-group">
+                                <label ><i className="zmdi zmdi-keyboard"></i></label>
+                                <input type="text" name="work" id="work" placeholder="Your Work"/>
                             </div>
                             <div className="form-group">
                                 <label ><i className="zmdi zmdi-lock"></i></label>

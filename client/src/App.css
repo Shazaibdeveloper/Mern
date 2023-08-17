@@ -108,9 +108,13 @@ input#Moredetails {
 }
 
 
+nav img{
+  width: 160px; 
+  object-fit: cover;
+}
 
 
-
-
-
+nav{
+height: 15%;
+}
 
