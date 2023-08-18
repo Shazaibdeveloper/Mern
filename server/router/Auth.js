@@ -59,10 +59,10 @@ router.post('/signin',async function (req, res) {
          const token = await userExists.generateAuthToken();
 
 
-         res.cookie('jwtoken',token,{
-            expires: new Date(Date.now() + 25892000000),
+         res.cookie('jwtoken', token, {
+            expires: new Date(Date.now() + 25892000000), // Set the expiration time
             httpOnly: true
-         })
+        });
 
          if(isMatch){
             return res.status(400).json({ message: "Invalid" });
