@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Signin = () => {
 
-    
+    const [email,setemail] = useState('');
+    const [password,setpassword] = useState('');
 
+    const loginUser = async (e)  =>{
+        e.preventDefault();
+        const res = await fetch("/signin",{
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body:JSON.stringify({
+                 email, password
+            })
+        })
+
+        const response = await res.json()
+        if(response.status === 400 || !response){
+         window.alert("Invalid signin")
+         console.log("Invalid signin");
+        }else{
+           window.alert("Successful signin")
+         console.log("Successful signin");
+         }
+
+    }
 
   return (
      <>
@@ -21,15 +44,15 @@ const Signin = () => {
                         <form method="POST" className="register-form" id="login-form">
                             <div className="form-group">
                                 <label for="your_name"><i className="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="your_name" id="your_name" placeholder="Your Name"/>
+                                <input value={email}    onChange={(e) => setemail(e.target.value) } type="text" name="your_name" id="your_name" placeholder="Your Name"/>
                             </div>
                             <div className="form-group">
                                 <label for="your_pass"><i className="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="your_pass" id="your_pass" placeholder="Password"/>
+                                <input value={password} onChange={(e) => setpassword(e.target.value)} type="password" name="your_pass" id="your_pass" placeholder="Password"/>
                             </div>
                           
                             <div className="form-group form-button">
-                                <input type="submit" name="signin" id="signin" className="form-submit" value="Log in"/>
+                                <input onClick={loginUser} type="submit" name="signin" id="signin" className="form-submit" value="Log in"/>
                             </div>
                         </form>
                         <div className="social-login">
