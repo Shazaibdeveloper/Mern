@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const About = () => {
+
+  const callAbout = async () =>{
+    try{
+     const res = await fetch('/about',{
+      
+     method: "GET",
+     headers: {
+        Accept: "application/json",
+         "Content-Type": "application/json"
+     },
+      credentials: "include",
+     })
+
+     const response = await res.json();
+        if(!response.status === 200 ){
+          const err = new Error(res.err)
+          throw err
+        }
+
+    }catch (err) {
+  console.error(err);
+}
+  }
+
+  useEffect(() =>{
+      callAbout()
+    },[]
+   );
+
+
   return (
+ 
     <>
     <section id="about" className="about">
+     
       <div className="container py-5 px-5">
-
+      <form method='GET' >
         <div className="section-title">
           <h2>About</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
@@ -42,8 +74,9 @@ const About = () => {
             
           </div>
         </div>
-
+ </form>
       </div>
+     
     </section>
     </>
   )

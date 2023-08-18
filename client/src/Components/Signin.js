@@ -5,28 +5,29 @@ const Signin = () => {
     const [email,setemail] = useState('');
     const [password,setpassword] = useState('');
 
-    const loginUser = async (e)  =>{
+    const loginUser = async (e) => {
         e.preventDefault();
-        const res = await fetch("/signin",{
+        const res = await fetch("/signin", {
             method: "POST",
             headers: {
-                "Content-type": "application/json"
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                 email, password
+            body: JSON.stringify({
+                email, password
             })
-        })
-
-        const response = await res.json()
-        if(response.status === 400 || !response){
-         window.alert("Invalid signin")
-         console.log("Invalid signin");
-        }else{
-           window.alert("Successful signin")
-         console.log("Successful signin");
-         }
-
+        });
+    
+        const response = await res.json();
+        if (res.status === 400 || !response.token) {
+            window.alert("Invalid signin");
+            console.log("Invalid signin");
+        } else {
+            window.alert("Successful signin");
+            console.log("Successful signin");
+        }
     }
+    
+    
 
   return (
      <>
