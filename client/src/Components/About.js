@@ -6,23 +6,26 @@ const About = () => {
    const callAbout = async () => {
     try {
       const res = await fetch('/about', {
-        method: "GET",
+        method: 'GET',
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        credentials: "include",
+        credentials: 'include',
       });
-       const response = await res.json();
-       if (response.status !== 200) { // Corrected condition
-        const err = new Error(response.err); // Corrected response.err
+
+      if (!res.ok) { // Check if response status is not OK
+        navigate('/signin'); // Navigate before throwing the error
+        const err = new Error('Request failed');
         throw err;
       }
+
+      const response = await res.json();
+      console.log(response);
     } catch (err) {
       console.error(err);
-      navigate("/signin");
     }
-  }
+  };
   useEffect(() =>{
       callAbout()
     },[]);
