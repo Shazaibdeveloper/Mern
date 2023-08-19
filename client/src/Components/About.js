@@ -13,15 +13,14 @@ const About = () => {
         },
         credentials: "include",
       });
-      console.log(res);
-      const response = await res.json();
-      if (response.status !== 200) { // Corrected condition
+       const response = await res.json();
+       if (response.status !== 200) { // Corrected condition
         const err = new Error(response.err); // Corrected response.err
         throw err;
       }
     } catch (err) {
       console.error(err);
-      navigate("/");
+      navigate("/signin");
     }
   }
   useEffect(() =>{
