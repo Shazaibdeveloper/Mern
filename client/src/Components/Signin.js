@@ -17,8 +17,8 @@ const Signin = () => {
             })
         });
     
-        const response = await res.json();
-        if (res.status === 400 || !response.token) {
+        const response = res.json();
+         if (res.status === 400 || !response) {
             window.alert("Invalid signin");
             console.log("Invalid signin");
         } else {

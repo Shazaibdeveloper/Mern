@@ -1,34 +1,32 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from "react-router-dom"
 
 const About = () => {
-
-  const callAbout = async () =>{
-    try{
-     const res = await fetch('/about',{
-      
-     method: "GET",
-     headers: {
-        Accept: "application/json",
-         "Content-Type": "application/json"
-     },
-      credentials: "include",
-     })
-
-     const response = await res.json();
-        if(!response.status === 200 ){
-          const err = new Error(res.err)
-          throw err
-        }
-
-    }catch (err) {
-  console.error(err);
-}
+   const navigate = useNavigate();
+   const callAbout = async () => {
+    try {
+      const res = await fetch('/about', {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        credentials: "include",
+      });
+      console.log(res);
+      const response = await res.json();
+      if (response.status !== 200) { // Corrected condition
+        const err = new Error(response.err); // Corrected response.err
+        throw err;
+      }
+    } catch (err) {
+      console.error(err);
+      navigate("/");
+    }
   }
-
   useEffect(() =>{
       callAbout()
-    },[]
-   );
+    },[]);
 
 
   return (
