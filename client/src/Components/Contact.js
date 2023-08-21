@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 
 const Contact = () => {
-  const [data, setdata] = useState();
+  const [data, setdata] = useState({
+    name: "",
+    email: "",
+    work: "",
+    message: "",
+  });
 
   const userData = async () => {
     try {
@@ -21,7 +26,12 @@ const Contact = () => {
       }
 
       const response = await res.json();
-      setdata(response);
+      setdata({
+        ...data,
+        name: response.name,
+        work: response.work,
+        email: response.email,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -29,6 +39,36 @@ const Contact = () => {
   useEffect(() => {
     userData();
   }, []);
+
+  const handleInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setdata({ ...data, [name]: value });
+  };
+
+  const contactForm = async (e) => {
+    e.preventDefault();
+    const { name, email, work, message } = data;
+    const res = await fetch("/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        work,
+        message,
+      }),
+    });
+    const resp = await res.json();
+    if (!resp) {
+      window.alert("Message not send");
+    } else {
+      window.alert("Message send successfully");
+      setdata({ ...data, message: "" });
+    }
+  };
 
   return (
     <>
@@ -46,41 +86,45 @@ const Contact = () => {
             </div>
           </div>
           <div className="contact-form">
-            <form method="post">
+            <form method="POST">
               <label for="fname">Name</label>
               <input
                 value={data.name}
+                onChange={handleInput}
                 type="text"
                 id="fname"
-                name="Companyname"
+                name="name"
               />
               <div className="first-last-div">
                 <div className="first">
                   <label for="work">Proffession</label>
                   <input
                     value={data.work}
+                    onChange={handleInput}
                     type="text"
                     id="fname"
-                    name="firstname"
+                    name="work"
                   />
                 </div>
               </div>
               <label for="lname">Email</label>
               <input
                 value={data.email}
+                onChange={handleInput}
                 type="email"
                 id="lname"
-                name="lastname"
+                name="email"
               />
               <label for="lname">Description</label>
               <input
                 value={data.message}
+                onChange={handleInput}
                 type="text"
                 id="Moredetails"
-                name="lastname"
+                name="message"
               />
               <div className="cont-input">
-                <input type="submit" value="Submit" />
+                <input onClick={contactForm} type="submit" value="Submit" />
               </div>
             </form>
           </div>
