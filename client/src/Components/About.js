@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
 
 const About = () => {
    const navigate = useNavigate();
+   const [data,setdata] = useState();
+
    const callAbout = async () => {
     try {
       const res = await fetch('/about', {
@@ -21,7 +23,7 @@ const About = () => {
       }
 
       const response = await res.json();
-      console.log(response);
+      setdata(response);
     } catch (err) {
       console.error(err);
     }
@@ -48,7 +50,7 @@ const About = () => {
             <img src="./assets/img/profile-img.jpg" className="img-fluid" alt="" />
           </div>
           <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-            <h3>UI/UX Designer &amp; Web Developer.</h3>
+            <h3>{data.name}</h3>
             <p className="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -56,18 +58,15 @@ const About = () => {
             <div className="row pt-3">
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Proffession : </strong> <span>{data.work}</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>Number      : </strong> <span>{data.number}</span></li>
+                 
                 </ul>
               </div>
               <div className="col-lg-6">
                 <ul>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
-                  <li><i className="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                <li><i className="bi bi-chevron-right"></i> <strong>email:</strong> <span>{data.email}</span></li>
+                  <li><i className="bi bi-chevron-right"></i> <strong>ID:</strong> <span>{data._id}</span></li>
                 </ul>
               </div>
             </div>
