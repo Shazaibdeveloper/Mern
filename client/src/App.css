@@ -120,3 +120,8 @@ nav{
 height: 15%;
 }
 
+.error-container.container {
+  padding: 48px;
+  text-align: center;
+  margin: 7em auto;
+}
