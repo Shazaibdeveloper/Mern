@@ -1,9 +1,10 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const { state, dispatch } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -26,6 +27,7 @@ const Signin = () => {
       console.log("Invalid signin");
     } else {
       dispatch({ type: "USER", payload: true });
+      navigate("/");
       window.alert("Successful signin");
       console.log("Successful signin");
     }

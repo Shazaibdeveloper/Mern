@@ -36,9 +36,9 @@ const Home = () => {
           <div className="Main-container">
             <h1>Welcome</h1>
             <p>{data.name}</p>
-            <a className="button" href="#">
+            <Link className="button" to="/signin">
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       ) : (
