@@ -30,7 +30,7 @@ const Logout = () => {
 
   return (
     <>
-      <div className="error-container container">
+      <div className="error-container log container">
         <h1>Log out page</h1>
       </div>
     </>
